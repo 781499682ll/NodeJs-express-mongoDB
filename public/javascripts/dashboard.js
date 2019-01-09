@@ -1,4 +1,12 @@
 $(() => {
+    // //判断是否登录成功
+    //
+
+
+    // var user = Cookie.getCookie('username');
+    // console.log(user);
+    // if(user.length>0){}
+
     //发送请求，并渲染页面
     let getUserList = () => {
         return new Promise((resolve, reject) => {
@@ -75,6 +83,15 @@ $(() => {
 
 
             //分页·
-            //db.myCollection.find().sort({"ID":1}).skip(10).limit(10)命令，将其根据ID排序后，跳过10，查询10条，结果为10-19条的数据。
+            // 总页数 = 
+            //if(数据库总数%qty==0){
+            //  总页数 = 数据库总数/qty
+            //}else{
+            //  总页数 = 数据库总数/qty+1
+            // }
+            //
+            // qty = 10 每页数量
+            //skip(X*10,X*10)  X == 当前页码
+            //db.myCollection.find().sort({"ID":1}).skip(0).limit(10)命令，将其根据ID排序后，跳过10，查询10条，结果为10-19条的数据。
         })()
 })

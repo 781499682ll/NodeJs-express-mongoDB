@@ -16,13 +16,17 @@ $(() => {
         })
     }
     signIn.click(async () => {
+
         let inputEmail = $("#inputEmail").val();
         let inputPassword = $("#inputPassword").val();
         let data = await login(inputEmail, inputPassword);
         if (data === 'success') {
-            console.log('登录成功');
+            // var d = new Date();
+            // Cookie.setCookie('username',inputEmail,d,'/');
+            alert('登陆成功');
+            location.href = '../dashboard.html';
         } else {
-            console.log('登录失败');
+            alert('登陆失败，用户名或密码错误')
         }
     })
 })

@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var router = express.Router();
 var {
     connect,
@@ -16,7 +17,11 @@ router.get('/', function (req, res, next) {
 //从请求体中获取姓名，并调用封装好的查询函数
 router.post('/findUser', async (req, res, next) => {
     let {
-        stu_id
+        stu_id,
+        stu_name,
+        stu_gender,
+        stu_skill,
+        stu_hobby
     } = req.body
     let data = await find(`students`, stu_id ? {
         stu_id
