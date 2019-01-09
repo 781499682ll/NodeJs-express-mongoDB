@@ -8,11 +8,14 @@ $(() => {
     // if(user.length>0){}
 
     //发送请求，并渲染页面
-    let getUserList = () => {
+    let getUserList = (stu_id) => {
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: "POST",
                 url: "http://localhost:3000/setting/findUser",
+                data:{
+                    stu_id:stu_id
+                },
                 success(data) {
                     resolve(data)
                 }
@@ -33,8 +36,8 @@ $(() => {
             })
         })
     }
-        (async () => {
-            let data = await getUserList();
+        async function render(stu_id) {
+            let data = await getUserList(stu_id);
             console.log(data);
             let html = data.map((item, index) => {
                 return `
@@ -93,5 +96,11 @@ $(() => {
             // qty = 10 每页数量
             //skip(X*10,X*10)  X == 当前页码
             //db.myCollection.find().sort({"ID":1}).skip(0).limit(10)命令，将其根据ID排序后，跳过10，查询10条，结果为10-19条的数据。
-        })()
+        };
+
+        render();
+
+        $('#serachBtn').on('click',async ()=>{
+            render($('#serachText').val());
+        })
 })

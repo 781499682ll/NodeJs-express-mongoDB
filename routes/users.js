@@ -51,7 +51,10 @@ router.post('/login', async (req, res, next) => {
     name: inputEmail
   })
   console.log(data)
-  if (data[0].password === inputPassword) {
+  if(data.length<=0){
+    res.send('fail');
+  }
+  else if (data[0].password === inputPassword) {
     // router.use(session({
     //   secret: inputEmail,
     //   cokkie: { maxAge: 60 * 1000 * 300 } //过期时间 ms
