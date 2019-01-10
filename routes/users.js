@@ -8,7 +8,9 @@ var {
   remove,
   edit
 } = require("../libs/mongo.js");
-//TODO:登录
+
+//引入token
+var token = require("../libs/token.js");
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -17,31 +19,6 @@ router.get('/', function (req, res, next) {
 
 
 router.post('/login', async (req, res, next) => {
-        // cookie-parser可以设置和获取cookie
-
-        // 1.安装   cnpm instlal cookie-parser --save
-
-        // 2.引入var cookieParser = require('cookie-parser');
-
-        // 3.设置中间件
-
-        // app.use(cookieParser());
-
-        // 4.设置cookie
-
-        // res.cookie("name",'zhangsan',{maxAge: 900000, httpOnly: true});
-
-        // //HttpOnly 默认false不允许 客户端脚本访问
-
-        // 5.获取cookie
-
-        // req.cookies.name
-
-
-
-
-
-
 
   let {
     inputEmail,
@@ -55,13 +32,15 @@ router.post('/login', async (req, res, next) => {
     res.send('fail');
   }
   else if (data[0].password === inputPassword) {
-    // router.use(session({
-    //   secret: inputEmail,
-    //   cokkie: { maxAge: 60 * 1000 * 300 } //过期时间 ms
-    // }))
-    res.send("success");
+    res.send({
+      status:'success',
+	    token:token.createToken({inputEmail},1296000)
+    
+    });
   } else {
-    res.send("fail");
+    res.send({
+      status:'fail'
+    });
   }
 });
 

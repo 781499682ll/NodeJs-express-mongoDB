@@ -20,9 +20,10 @@ $(() => {
         let inputEmail = $("#inputEmail").val();
         let inputPassword = $("#inputPassword").val();
         let data = await login(inputEmail, inputPassword);
-        if (data === 'success') {
+        if (data.status === 'success') {
             // var d = new Date();
             // Cookie.setCookie('username',inputEmail,d,'/');
+            localStorage.setItem("token",data.token);
             alert('登陆成功');
             location.href = '../dashboard.html';
         } else {

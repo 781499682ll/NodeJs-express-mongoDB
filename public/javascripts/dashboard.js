@@ -1,6 +1,24 @@
-$(() => {
+$(async () => {
     // //判断是否登录成功
-    //
+    let autologin = (token)=>{
+        return new Promise((resolve,reject)=>{
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/setting/autologin",
+                headers:{
+                    token:token
+                },
+                success(data) {
+                    resolve(data)
+                }
+            })
+        })
+    }
+    var checkStatus = await autologin(localStorage.getItem('token'));
+    if(checkStatus){
+
+    
+    
 
 
     // var user = Cookie.getCookie('username');
@@ -42,7 +60,8 @@ $(() => {
             let html = data.map((item, index) => {
                 return `
                 <tr>
-                    <td id='stu_id'>${item.stu_id}</td>
+                    <td><img src=${item.stu_profile_photo} alt=${item.stu_name} width='50'></td>
+                    <td class='stu_id'>${item.stu_id}</td>
                     <td>${item.stu_name}</td>
                     <td>${item.stu_gender}</td>
                     <td>${item.stu_skill}</td>
@@ -58,7 +77,7 @@ $(() => {
 
             $('.edit').each(function (idx) {
                 $('.edit').eq(idx).on('click', function () {
-                    let edit_id = $(this).parent().siblings().first('td').html();
+                    let edit_id = $(this).parent().siblings().eq(1).html();
                     location.href = `../edit.html?stu_id=${edit_id}`;
                 })
             })
@@ -67,7 +86,7 @@ $(() => {
                 $('.delete').eq(idx).on('click', async function () {
                     let del_confirm = window.confirm('你确定要删除吗');
                     if(del_confirm){
-                        let del_id = $(this).parent().siblings().first('td').html()
+                        let del_id = $(this).parent().siblings().eq(1).html()
                         // console.log('删除',del_id);
                         let del_data = await deleteuser(del_id);
                         // console.log(del_data);
@@ -100,7 +119,12 @@ $(() => {
 
         render();
 
+        //搜索功能（stu_id）
         $('#serachBtn').on('click',async ()=>{
             render($('#serachText').val());
         })
+    }else{
+        location.href = '../login.html';
+        return
+    }
 })
