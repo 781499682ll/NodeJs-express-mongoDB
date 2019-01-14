@@ -11,7 +11,7 @@ jQuery(async ($) => {
             return new Promise((resolve, reject) => {
                 $.ajax({
                     type: "POST",
-                    url: "http://127.0.0.1:3000/setting/autologin",
+                    url: "http://39.105.167.17:3000/setting/autologin",
                     headers: {
                         token: token
                     },
@@ -32,7 +32,7 @@ jQuery(async ($) => {
                         data: {
                             stu_id: stu_id
                         },
-                        url: "http://127.0.0.1:3000/setting/findUser",
+                        url: "http://39.105.167.17:3000/setting/findUser",
                         success(data) {
                             resolve(data)
                         }
@@ -52,7 +52,7 @@ jQuery(async ($) => {
                             stu_hobby: stu_hobby,
                             stu_profile_photo: stu_profile_photo
                         },
-                        url: "http://127.0.0.1:3000/setting/editUser",
+                        url: "http://39.105.167.17:3000/setting/editUser",
                         success(data) {
                             resolve(data)
                         }
@@ -69,7 +69,7 @@ jQuery(async ($) => {
                         console.log(data);
 
                         $.ajax({
-                            url: 'http://127.0.0.1:3000/setting/uploadImg',
+                            url: 'http://39.105.167.17:3000/setting/uploadImg',
                             type: 'post',
                             data: data,
                             contentType: false,
