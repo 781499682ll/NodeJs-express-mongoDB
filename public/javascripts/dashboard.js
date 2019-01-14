@@ -4,7 +4,7 @@ $(async () => {
         return new Promise((resolve,reject)=>{
             $.ajax({
                 type: "POST",
-                url: "http://localhost:3000/setting/autologin",
+                url: "http://127.0.0.1:3000/setting/autologin",
                 headers:{
                     token:token
                 },
@@ -30,7 +30,7 @@ $(async () => {
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: "POST",
-                url: "http://localhost:3000/setting/findUser",
+                url: "http://127.0.0.1:3000/setting/findUser",
                 data:{
                     stu_id:stu_id
                 },
@@ -44,7 +44,7 @@ $(async () => {
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: "POST",
-                url: "http://localhost:3000/setting/removeUser",
+                url: "http://127.0.0.1:3000/setting/removeUser",
                 data:{
                     stu_id:del_id
                 },
