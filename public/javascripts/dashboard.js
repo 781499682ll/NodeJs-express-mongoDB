@@ -121,7 +121,7 @@ $(async () => {
 
         //搜索功能（stu_id）
         $('#serachBtn').on('click',async ()=>{
-            render($('#serachText').val());
+            render($('#serachText').val().trim());
         })
     }else{
         location.href = '../login.html';
