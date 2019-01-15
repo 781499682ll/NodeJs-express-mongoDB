@@ -34,7 +34,7 @@ router.post('/login', async (req, res, next) => {
   else if (data[0].password === inputPassword) {
     res.send({
       status:'success',
-	    token:token.createToken({inputEmail},1296000)
+	    token:token.createToken({inputEmail},30)
     
     });
   } else {

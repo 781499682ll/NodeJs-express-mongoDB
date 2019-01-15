@@ -141,7 +141,7 @@ router.post('/uploadImg', upload.single('profile_photo'), function (req, res, ne
 
 //验证token判断登录状态
 router.post('/autologin', async (req, res, next) => {
-    console.log(req.headers); 
+    // console.log(req.headers); 
     var result = token.checkToken(req.headers.token)
     console.log(token.decodeToken(req.headers.token));
     res.send(result);
