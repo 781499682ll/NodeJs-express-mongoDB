@@ -129,14 +129,17 @@ jQuery(async ($) => {
                     $('main').html(html)
 
                     $('#stu_profile_photo').on('change', async () => {
-                        $('.cover').css('display','block')
+                        $('.cover').css('display', 'block')
                         var res = await uploadImg();
-                        if(res.status == 'success'){
-                            $('.cover').css('display','none')
+                        if (res.status == 'success') {
+                            $('.cover').css('display', 'none');
+                            var src = res.file.filename;
+                            // console.log($('#stu_profile_photo').val());
+                            $('#pho')[0].src = src;
+                        }else{
+                            alert('上传图片失败')
                         }
-                        var src = res.file.filename;
-                        // console.log($('#stu_profile_photo').val());
-                        $('#pho')[0].src = src;
+
 
                     })
 
