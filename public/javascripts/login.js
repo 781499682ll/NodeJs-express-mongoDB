@@ -20,7 +20,7 @@ $(() => {
             }
 
             signIn.click(async () => {
-
+                $('.cover').css('display', 'block')
                 let inputEmail = $("#inputEmail").val();
                 let inputPassword = $("#inputPassword").val();
                 let data = await login(inputEmail, inputPassword);
@@ -29,9 +29,11 @@ $(() => {
                     // Cookie.setCookie('username',inputEmail,d,'/');
                     localStorage.setItem("token", data.token);
                     alert('登陆成功');
+                    $('.cover').css('display', 'none');
                     location.href = '../dashboard.html';
                 } else {
                     alert('登陆失败，用户名或密码错误')
+                    $('.cover').css('display', 'none');
                 }
             })
         }

@@ -53,7 +53,7 @@ jQuery(async ($) => {
                 $('.cover').css('display', 'none');
                 var src = res.file.filename;
                 $('#pho')[0].src = src;
-            }else{
+            } else {
                 alert('上传图片失败')
             }
 
@@ -61,16 +61,19 @@ jQuery(async ($) => {
 
 
         $('#insert').on('click', async () => {
+            $('.cover').css('display', 'block');
             let stu_id = $('#stu_id').val();
             let stu_name = $('#stu_name').val();
             let stu_gender = $('#stu_gender').val();
             let stu_skill = $('#stu_skill').val();
             let stu_hobby = $('#stu_hobby').val();
             let stu_profile_photo = $('#pho')[0].src;
-                // console.log($('#pho')[0].src);
+            // console.log($('#pho')[0].src);
 
             var r_data = await insertUser(stu_id, stu_name, stu_gender, stu_skill, stu_hobby, stu_profile_photo);
             if (r_data == 'success') {
+                $('.cover').css('display', 'none');
+
                 // alert('插入成功');
                 location.href = '../dashboard.html';
             } else {

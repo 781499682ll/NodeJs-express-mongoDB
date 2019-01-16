@@ -136,7 +136,7 @@ jQuery(async ($) => {
                             var src = res.file.filename;
                             // console.log($('#stu_profile_photo').val());
                             $('#pho')[0].src = src;
-                        }else{
+                        } else {
                             alert('上传图片失败')
                         }
 
@@ -145,6 +145,8 @@ jQuery(async ($) => {
 
                     //点击修改按钮时获取数据，并发送请求修改数据
                     $('#edit').on('click', async () => {
+                        $('.cover').css('display', 'block');
+
                         let stu_id = $('#stu_id').val();
                         let stu_name = $('#stu_name').val();
                         let stu_gender = $('#stu_gender').val();
@@ -159,8 +161,13 @@ jQuery(async ($) => {
                         if (e_data == 'success') {
 
                             // alert('修改成功');
+                            $('.cover').css('display', 'none');
+
                             location.href = '../dashboard.html';
                         } else {
+                            alert('修改失败')
+                            $('.cover').css('display', 'none');
+
                             return
                         }
 
