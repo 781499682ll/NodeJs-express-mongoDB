@@ -47,6 +47,7 @@ jQuery(async ($) => {
         }
 
         $('#stu_profile_photo').on('change', async () => {
+            $('.cover').css('display', 'block');
             var res = await uploadImg();
             if (res.status == 'success') {
                 $('.cover').css('display', 'none');
