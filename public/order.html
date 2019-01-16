@@ -8,6 +8,23 @@
     <title>Document</title>
     <link rel="stylesheet" href="./stylesheets/bootstrap.css">
     <link rel="stylesheet" href="./stylesheets/dashboard.css">
+    <style>
+            .cover {
+                width: 100%;
+                height: 100%;
+                background: #ccc;
+                opacity: 0.6;
+                position: absolute;
+                left: 0;
+                top: 0;
+                display: none;
+            }
+            .cover img{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+            }
+        </style>
 </head>
 
 <body>
@@ -205,6 +222,9 @@
             </main>
         </div>
     </div>
+    <div class="cover">
+            <img src="./img/loading.gif" alt="">
+        </div>
     <script src="javascripts/jquery.js"></script>
     <script src="javascripts/order.js"></script>
 </body>

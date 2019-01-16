@@ -48,11 +48,13 @@ jQuery(async ($) => {
 
         $('#stu_profile_photo').on('change', async () => {
             var res = await uploadImg();
-            var src = res.file.filename;
-            console.log(res);
-            // console.log($('#stu_profile_photo').val());
-            $('#pho')[0].src = src;
-
+            if (res.status == 'success') {
+                $('.cover').css('display', 'none');
+                var src = res.file.filename;
+                $('#pho')[0].src = src;
+            }else{
+                alert('上传图片失败')
+            }
 
         })
 
