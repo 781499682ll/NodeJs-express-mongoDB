@@ -20,6 +20,7 @@ router.get('/news', async (req, res, next) => {
   let data = await getNews();
   res.send({
     status: 1,
+    abc: 'acs',
     data:JSON.parse(data).data
   });
 });
