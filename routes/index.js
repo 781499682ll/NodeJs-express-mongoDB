@@ -1,9 +1,12 @@
 var express = require('express');
+var request = require('request');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function (req, res, next) {
+  res.render('index', {
+    title: 'Express'
+  });
 });
 
 
@@ -21,8 +24,44 @@ router.get('/news', async (req, res, next) => {
   res.send({
     status: 1,
     abc: 'acs',
-    data:JSON.parse(data).data
+    data: JSON.parse(data).data
   });
 });
 
+
+// 获取购酒网商品数据的
+router.get('/Indexwine', async (req, res, next) => {
+  let idx = req.query.idx
+  console.log(idx);
+  
+  let getIndexwine = (idx) => {
+    return new Promise((resolve, reject) => {
+      request(`http://m.gjw.com/BtCApi/Home/GethomeProductByhot?seriesid=${idx}&pageindex=1&pagesize=10`, (err, response, body) => {
+        resolve(body)
+      })
+    })
+  }
+  let data = await getIndexwine(idx);
+  res.send({
+    status: 1,
+    data: JSON.parse(data).data
+  });
+});
+
+// 获取购酒网分类数据的
+router.get('/Classify', async (req, res, next) => {
+  
+  let getClassify = () => {
+    return new Promise((resolve, reject) => {
+      request(`http://m.gjw.com/BtCApi/List/GetSeriesList`, (err, response, body) => {
+        resolve(body)
+      })
+    })
+  }
+  let data = await getClassify();
+  res.send({
+    status: 1,
+    data: JSON.parse(data).data
+  });
+});
 module.exports = router;
